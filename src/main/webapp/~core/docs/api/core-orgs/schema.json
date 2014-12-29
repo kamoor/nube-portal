@@ -1,0 +1,179 @@
+{
+    "name": "Core Organization API. You can maintain your company information such as name, location, hours etc etc.",
+    "methods": [
+        {
+            "name": "create",
+            "description": "Create a new company",
+            "httpMethod": "POST",
+            "uri": "/v1/orgs/create",
+            "securedByOAuth": false,
+            "request": {
+                "type": "object",
+                "properties": [
+                    {
+                        "name": "context",
+                        "description": "Context",
+                        "type": "string",
+                        "default": "$primaryContext",
+                        "readonly": true
+                    },
+                    {
+                        "name": "title",
+                        "description": "Company Title",
+                        "type": "string"
+                    },
+                    {
+                    	"name":"description",
+                        "description": "Description",
+                        "type": "string"
+                    },
+                    {
+                    	"name":"phone",
+                        "description": "Phone#",
+                        "type": "string"
+                    },
+                    {
+                    	"name":"email",
+                        "description": "Company email",
+                        "type": "string"
+                    },
+                    {
+                        "name":"location",
+                        "description":"Location Info",
+                        "type":"object",
+                        "properties":[
+		                        	{
+				                    	"name":"location.locationId",
+				                        "description": "Location Id(String)",
+				                        "type": "string"
+				                    },
+				                    {
+				                    	"name":"location.addrLn1",
+				                        "description": "Address Line1",
+				                        "type": "string"
+				                    },
+				                    {
+				                    	"name":"location.addrLn2",
+				                        "description": "Address Line2",
+				                        "type": "string"
+				                    },
+				                    {
+				                    	"name":"location.city",
+				                        "description": "City",
+				                        "type": "string"
+				                    },
+				                    {
+				                    	"name":"location.state",
+				                        "description": "State",
+				                        "type": "string"
+				                    },
+				                    {
+				                    	"name":"location.zip",
+				                        "description": "Zip Code",
+				                        "type": "string"
+				                    },
+				                     {
+				                    	"name":"location.latitude",
+				                        "description": "Latitude",
+				                        "type": "number"
+				                    },
+				                    {
+				                    	"name":"location.longitude",
+				                        "description": "Longitude",
+				                        "type": "number"
+				                    },
+				                    {
+				                    	"name":"location.timeZone",
+				                        "description": "Time Zone(Eg: EST)",
+				                        "type": "string"
+				                    }
+                        	]
+                    
+                    }
+             
+                ],
+                "required": [
+                    "context",
+                    "title"
+                ]
+            },
+            "response": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "Status",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        {
+            "name": "view",
+            "description": "View your company information",
+            "httpMethod": "GET",
+            "uri": "/v1/orgs/my",
+            "securedByOAuth": false,
+            "request": {
+                "type": "object",
+                "properties": [
+                    {
+                        "name": "context",
+                        "description": "Context",
+                        "type": "string",
+                        "default": "$primaryContext",
+                        "readonly": true
+                    }
+                ],
+                "required": [
+                    "context"
+                ]
+            },
+            "response": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "Status",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "description": "Delete a company. be careful, you may loose all the information you stored under company profile",
+            "httpMethod": "POST",
+            "uri": "/v1/orgs/delete",
+            "securedByOAuth": false,
+            "request": {
+                "type": "object",
+                "properties": [
+                    {
+                        "name": "orgId",
+                        "description": "Organization Unique Id",
+                        "type": "string"
+                    },
+                    {
+                        "name": "context",
+                        "description": "Value",
+                        "type": "string",
+                        "default": "$primaryContext",
+                        "readonly": true
+                    }
+                ],
+                "required": [
+                    "context",
+                    "orgId"
+                ]
+            },
+            "response": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "Status",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ]
+}
