@@ -16,9 +16,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.1.3.RELEASE</spring.version>
-		<spring-security.version>3.2.5.RELEASE</spring-security.version>
-		<spring-data.version>1.4.1.RELEASE</spring-data.version>
+		<nube.core.version>1.0-SNAPSHOT</nube.core.version>
 		<start-class>com.nube.server.NubeServer</start-class>
 	</properties>
 	<dependencies>
@@ -26,12 +24,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- 
-		<dependency> 
-				<groupId>org.springframework.boot</groupId> 
-				<artifactId>spring-boot-starter-actuator</artifactId> 
-		</dependency> 
-		-->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-actuator</artifactId> 
+			</dependency> -->
 		<!-- This is required to make JSP work with boot/tomcat -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -51,22 +45,22 @@
 		<dependency>
 			<groupId>com.nube.core</groupId>
 			<artifactId>nube-core-util</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>${nube.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.nube.core</groupId>
 			<artifactId>nube-core-vo</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>${nube.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.nube.core</groupId>
 			<artifactId>nube-core-service</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>${nube.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.nube.core</groupId>
 			<artifactId>nube-core-dao</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>${nube.core.version}</version>
 		</dependency>
 
 		<!-- All Core API-s are bundles in portal for now -->
@@ -97,17 +91,9 @@
 		</dependency>
 
 		<!-- End API bundles -->
-		<!--  
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.2.0</version>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>2.11.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

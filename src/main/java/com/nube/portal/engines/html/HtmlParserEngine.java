@@ -120,31 +120,5 @@ public class HtmlParserEngine {
 		
 	}
 	
-	
-	public static void main(String args[]) throws NubeException, ScriptException, IOException{
-		
-		File f = new File("/Users/kamoorr/git/nube-portal-1.0/nube-portal/src/main/webapp/~core/sjs/xyz/../rest.js");
-		System.out.println(f.getParent());
-		
-		String input = "<div><nube:include src=\"sdad.xml\"/><div>dasdasd{{test1}}<script>print(\"sadasd\");</script></div><div>{{test2}}</div>";
-		HtmlParserEngine htmlParserEngine = new HtmlParserEngine();
-		
-		Document document = htmlParserEngine.parse(input);
-		System.out.println(document.toString());
-		Elements nubes = document.select("nube|include[src]");
-		Elements mustaches = document.getElementsContainingOwnText("{{");
-		for(Element e: nubes){
-			System.out.println(e.attr("src"));
-			
-		}
-		
-		for(Element e: mustaches){
-			System.out.println("Mustache \n"+ e.toString());
-		}
-		
-		
-		
-		
-		System.out.println("Done");
-	}
+
 }

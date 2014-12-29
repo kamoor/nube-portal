@@ -17,6 +17,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -35,8 +36,8 @@ public class JsEngine {
 	
 	private ScriptEngine scriptEngine;
 	
-	private static Map<String, String> defaultEngineSource;
-	
+	@Autowired
+	CoreJsFrameworks coreJsFrameworks;
 
 	/**
 	 * TODO, initializing for each request due to a bug in re-using nashorn
@@ -51,33 +52,21 @@ public class JsEngine {
 	}
 	
 	
+	/**
+	 * Initialize js engine and evaluate core javasc
+	 * @throws ScriptException
+	 * @throws IOException
+	 */
 	@PostConstruct
 	public void init() throws ScriptException, IOException{
 		scriptEngine = new ScriptEngineManager().getEngineByName("nashorn");
 		if(scriptEngine == null){
 			throw new RuntimeException("Failed to start nashorn javascript engine. JDK8 must be installed.");
 		}
-		logger.info("js engine initialized");
-	
-		this.cacheAllCoreEngines();
-		for(String key: defaultEngineSource.keySet()){
-			scriptEngine.eval(defaultEngineSource.get(key));
+		for(String key: coreJsFrameworks.getCoreJsFrameWorks().keySet()){
+			scriptEngine.eval(coreJsFrameworks.getCoreJsFrameWorks().get(key));
 			logger.info(key + " initialized");
 		}
-		
-	}
-	
-	private void cacheAllCoreEngines()throws IOException{
-		
-		if(CollectionUtils.isEmpty(defaultEngineSource)){
-			defaultEngineSource = new TreeMap<String, String>();
-		}else{
-			return;
-		}
-		defaultEngineSource = new LinkedHashMap<String, String>();
-		defaultEngineSource.put("rest", FileUtil.readFileFromDisk("/Users/kamoorr/git/nube-portal-1.0/nube-portal/src/main/webapp/~core/sjs/rest.js"));
-		defaultEngineSource.put("mustache",  FileUtil.readFileFromDisk("/Users/kamoorr/git/nube-portal-1.0/nube-portal/src/main/webapp/~core/sjs/mustache.js"));
-		logger.info("all core sjs source cached.");
 	}
 	
 	
@@ -116,12 +105,6 @@ public class JsEngine {
 				logger.info("Error is in " + source);
 			}
 			throw new NubeException(500, "js file execution error ", se);
-		}catch (Exception e) {
-			logger.error("Critial error", e);
-			if(LocalSetup.isEnabled() || SessionContext.isDebug()){
-				logger.info("Error is in " + source);
-			}
-			throw new NubeException(500, "js file execution error ", e);
 		}
 	}
 	
@@ -145,14 +128,5 @@ public class JsEngine {
 	
 
 
-	
-	public static void main(String args[])throws Exception{
-		JsEngine je = new JsEngine();
-		je.init();
-		je.evalByFile("/Users/kamoorr/Desktop/duo-1.0/demo-burgers/server-keyval.js");
-		//je.evalByFile("/Users/kamoorr/Desktop/duo-1.0/demo-burgers/server-menu.js");
-		String html = "<sadsad>{{name}}";
-		System.out.println((String) je.eval("Mustache.render('" + html + "', person);"));
-	}
 
 }

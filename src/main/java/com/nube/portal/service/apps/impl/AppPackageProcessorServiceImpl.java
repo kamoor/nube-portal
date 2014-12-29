@@ -352,7 +352,6 @@ public class AppPackageProcessorServiceImpl implements
 	private void  addNubeSpecificContents(String context, String version, Document document){
 		//add some js object to beginning of body
 		document.body().prepend("<script type=\"text/javascript\"> var currUser = {\"firstName\":\"Guest\"};var app = {\"id\":\""+context+"\", \"version\":\""+version+"\"};</script>");
-		
 		//add some js files to end of body
 		document.body().append("<script type=\"text/javascript\" src=\"/~core/js/rest.js\"/>");
 		document.body().append("<script type=\"text/javascript\" src=\"/~core/js/nana.js\"/>");
