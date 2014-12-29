@@ -1,0 +1,53 @@
+{
+            "name": "Email api to send email",
+            "methods": [
+                {
+                    "name": "send",
+                    "description": "Send an email to one or more recipient",
+                    "httpMethod": "POST",
+                    "uri": "/v1/email/send",
+                    "securedByOAuth": false,
+                    "request": {
+                        "type": "object",
+                        "properties": [
+                        	{
+                            	"name":"from",
+                                "description": "From",
+                                "type": "string",
+                                "default":"admin@nube.com"
+                            },
+                            {
+                           		"name":"to",
+                                "description": "To(comma separated email addresses)",
+                                "type": "string"
+                            },
+                            {
+                                "name":"subject",
+                                "description": "Subject",
+                                "type": "string"
+                            },
+                            {
+                                "name":"content",
+                                "description": "Email content",
+                                "type": "string"
+                            }
+                            
+                        ],
+                        "required": [
+                            "to",
+                            "subject",
+                            "content"
+                        ]
+                    },
+                    "response": {
+                        "type": "object",
+                        "properties": {
+                            "status": {
+                                "description": "Status",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ]
+}

@@ -8,4 +8,4 @@ else
 fi
 
 echo "Starting nube using profile $profile"
-mvn clean install && java -jar -Dspring.profiles.active=$profile target/*.jar
+mvn clean install && java -jar -Dspring.profiles.active=$profile nube-portal-server/target/*.jar

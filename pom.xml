@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nube.portal</groupId>
-	<artifactId>nube-portal</artifactId>
+	<artifactId>nube-portal-parent</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 	<name>Nube Portal</name>
-	<url>http://nubedaddy.com</url>
+	<url>http://nube.com</url>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -136,12 +136,13 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 		</plugins>
 	</build>
+
+	<modules>
+		<module>nube-portal</module>
+		<module>nube-portal-server</module>
+	</modules>
 
 	<repositories>
 		<repository>
