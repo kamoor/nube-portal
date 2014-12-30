@@ -1,0 +1,1 @@
+Use this folder to keep anything servelet container needs to find as "resource"

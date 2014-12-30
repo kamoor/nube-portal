@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.context.embedded.MultiPartConfigFactory;
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
@@ -20,8 +20,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
-
-
 
 /**
  * Spring boot to start server on the fly and run an app. Parameters: --debug to
@@ -36,11 +34,9 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan
 @EnableCaching
 @PropertySource(ignoreResourceNotFound = true, value = {
-		"classpath:application.properties", 
-		"classpath:admin.properties",
+		"classpath:application.properties", "classpath:admin.properties",
 		"classpath:nube-portal.properties",
-		"classpath:nube-portal-custom.properties"
-		})
+		"classpath:nube-portal-custom.properties" })
 @ImportResource(value = { "classpath*:spring/*.xml" })
 public class NubeServer {
 
@@ -53,11 +49,8 @@ public class NubeServer {
 
 		System.out.println("Start Nube cloud application manager");
 		ApplicationContext ctx = SpringApplication.run(NubeServer.class, args);
-		//JVMStatus.printJVMStatus();
+		// JVMStatus.printJVMStatus();
 	}
-	
-	
-
 
 	/**
 	 * Server configuration customization
@@ -77,18 +70,19 @@ public class NubeServer {
 	@Bean
 	MultipartConfigElement multipartConfigElement() {
 
-		MultiPartConfigFactory factory = new MultiPartConfigFactory();
+		MultipartConfigFactory factory = new MultipartConfigFactory();
 		factory.setMaxFileSize("15MB");
 		factory.setMaxRequestSize("15MB");
 		return factory.createMultipartConfig();
 	}
-	
-	@Bean(name="cacheManager")
-	public CacheManager cacheManager() {
-	    SimpleCacheManager cacheManager = new SimpleCacheManager();
-	    cacheManager.setCaches(Arrays.asList(new ConcurrentMapCache("content")));
 
-	    return cacheManager;
+	@Bean(name = "cacheManager")
+	public CacheManager cacheManager() {
+		SimpleCacheManager cacheManager = new SimpleCacheManager();
+		cacheManager
+				.setCaches(Arrays.asList(new ConcurrentMapCache("content")));
+
+		return cacheManager;
 	}
 
 	/**

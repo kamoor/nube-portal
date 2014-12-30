@@ -39,6 +39,17 @@ public class AdminController extends CommonController{
 	static Logger logger = Logger.getLogger(AdminController.class);
 
 	/**
+	 * Just hello world
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/helloworld")
+	public ModelAndView helloworld(final HttpServletRequest request) {
+		logger.info("hello worl request");
+		return super.jspView("helloworld");
+	}
+	
+	/**
 	 * Admin home page
 	 * 
 	 * @param user

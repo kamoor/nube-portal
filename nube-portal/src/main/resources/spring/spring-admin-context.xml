@@ -22,11 +22,9 @@
 	<!-- Enable annotation driven tasks -->
 	
 	
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
-		 <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> 
-		 <property name="prefix" value="/~core/"/>  
-        <!--  <property name="suffix" value=""/>   --> 
-	</bean> 
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/~core/"/>
+    </bean>
 
     <!-- Thread executor -->
 	<bean id="appProcessorExecutor"
