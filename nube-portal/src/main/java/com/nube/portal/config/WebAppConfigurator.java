@@ -23,7 +23,7 @@ public class WebAppConfigurator extends WebMvcConfigurerAdapter{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/~core/**")
 				.addResourceLocations("/~core/");
-		logger.info("resource handler set");
+		logger.info("resource handlers set");
 		
 	}
 	

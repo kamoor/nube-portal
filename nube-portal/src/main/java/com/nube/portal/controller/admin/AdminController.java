@@ -43,7 +43,7 @@ public class AdminController extends CommonController{
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/helloworld")
+	@RequestMapping("/helloworld1")
 	public ModelAndView helloworld(final HttpServletRequest request) {
 		logger.info("hello worl request");
 		return super.jspView("helloworld");

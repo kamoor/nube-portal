@@ -17,6 +17,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<nube.core.version>1.0-SNAPSHOT</nube.core.version>
+		<maven.compiler.target>1.8</maven.compiler.target>
+   		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -138,13 +140,14 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+			  </configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<modules>
 		<module>nube-portal</module>
-		<module>nube-portal-server</module>
 	</modules>
 
 	<repositories>
